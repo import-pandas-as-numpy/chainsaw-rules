@@ -6,7 +6,7 @@ authors:
   - sudoREM
 
 kind: evtx
-level: critical
+level: medium
 status: stable
 timestamp: Event.System.TimeCreated
 
