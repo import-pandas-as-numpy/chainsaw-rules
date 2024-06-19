@@ -1,0 +1,33 @@
+---
+title: Failed MSSQL Login
+group: MSSQL
+description: Failed login via MSSQL.
+authors:
+  - sudoREM
+
+kind: evtx
+level: critical
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name: User
+    to: Event.EventData.Data[0]
+  - name: Client
+    to: Event.EventData.Data[2]
+
+filter:
+  condition: global and hack
+  global:
+    - Event.System.EventID: 18456
+  hack:
+    - Event.EventData.Data[1]: " Reason: Password did not match that for the login provided."
+
+aggregate:
+  count: ">5"
+  fields:
+    - Event.EventData.Data[2]

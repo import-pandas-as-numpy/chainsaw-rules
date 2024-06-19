@@ -1,0 +1,22 @@
+---
+title: xp_cmdshell Activity
+group: MSSQL
+description: Command shell activity via MSSQL.
+authors:
+  - sudoREM
+
+kind: evtx
+level: critical
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name: Data
+    to: Event.EventData.Data[0]
+
+filter:
+  Event.System.EventID: 15457
