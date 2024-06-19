@@ -9,7 +9,7 @@ chainsaw hunt -r chainsaw-rules/rules .
 ```
 
 There is a redundant rule in here, `network_login_aggregate`. This simply collapses down network logins into a digestable
-summary for at-a-glance analysis. Keep this in mind when running this in conjunction with the defualt ruleset
+summary for at-a-glance analysis. Keep this in mind when running this in conjunction with the default ruleset
 of Chainsaw, as it will duplicate entries.
 
 ### Rules
