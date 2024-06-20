@@ -1,0 +1,26 @@
+---
+title: Scheduled Task Creation
+group: Scheduled Task
+description: Detects creation of scheduled tasks.
+authors:
+  - sudoREM
+
+kind: evtx
+level: medium
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name : Username
+    to: Event.EventData.SubjectUserName
+  - name: Task Name
+    to: Event.EventData.TaskName
+  - name: Task Content
+    to: Event.EventData.TaskContent
+
+filter:
+  Event.System.EventID: 4698
