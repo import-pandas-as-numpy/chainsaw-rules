@@ -1,7 +1,7 @@
 ---
-title: ScreenConnect Connections
+title: VNC Server Connection
 group: RMM
-description: Connections via ScreenConnect
+description: Connection via RealVNC or TightVNC
 authors:
   - sudoREM
 
@@ -19,5 +19,5 @@ fields:
     to: Event.EventData.Data
 
 filter:
-  Event.System.EventID: 100
-  Event.System.Provider_attributes.Name: ScreenConnect
+  Event.System.EventID: 256
+  Event.System.Provider_attributes.Name: VNC Server
