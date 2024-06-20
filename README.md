@@ -29,3 +29,8 @@ if they are not apparent through other event logs.
 #### ScreenConnect
 
 Timeline ScreenConnect connections.
+
+#### RMM Enum
+
+Modified RMM enumeration rule from the default Chainsaw rulset. Focused on simply detecting arbitrary RMM
+usage for at-a-glance statistics.
