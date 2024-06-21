@@ -1,0 +1,31 @@
+---
+title: ASP Exceptions
+group: Webservers
+description: ASP internal auditing errors and exceptions, often raised during the exploitation of IIS.
+authors:
+  - sudoREM
+
+
+kind: evtx
+level: high
+status: stable
+timestamp: Event.System.TimeCreated
+
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name: Message
+    to: Event.EventData.Data[1]
+  - name: Error
+    to: Event.EventData.Data[17]
+  - name: Detail
+    to: Event.EventData.Data[19]
+  - name: Originator
+    to: Event.EventData.Data[21]
+
+filter:
+  Event.System.EventID: 1309
+  Event.System.Provider_attributes.Name: 'i*ASP.NET*'
