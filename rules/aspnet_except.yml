@@ -5,12 +5,10 @@ description: ASP internal auditing errors and exceptions, often raised during th
 authors:
   - sudoREM
 
-
 kind: evtx
 level: high
 status: stable
 timestamp: Event.System.TimeCreated
-
 
 fields:
   - name: Event ID
@@ -28,4 +26,4 @@ fields:
 
 filter:
   Event.System.EventID: 1309
-  Event.System.Provider_attributes.Name: 'i*ASP.NET*'
+  Event.System.Provider_attributes.Name: "i*ASP.NET*"
