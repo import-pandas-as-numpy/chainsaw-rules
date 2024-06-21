@@ -1,0 +1,31 @@
+---
+title: Supicious Powershell
+group: Powershell
+description: JAB is observed often in canned reverse shells and Beacons. Adopted from Florian Roth's YARA rule.
+authors:
+  - sudoREM
+
+kind: evtx
+level: critical
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name: User SID
+    to: Event.System.Security_attributes.UserID
+  - name: Payload
+    to: Event.EventData.ContextInfo
+
+filter:
+  condition: event_log and powershell
+
+  event_log:
+    Event.System.EventID: 4100
+
+  powershell:
+    - Event.EventData.ContextInfo: "* JAB*"
+    - Event.EventData.ContextInfo: "*System.Net.Sockets.TCPClient*"
