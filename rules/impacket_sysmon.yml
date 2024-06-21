@@ -1,0 +1,34 @@
+---
+title: Impacket - Sysmon
+group: Hacktools
+description: Detects Impacket invocations using SysMon Logs
+authors:
+  - sudoREM
+
+kind: evtx
+level: critical
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Command
+    to: Event.EventData.CommandLine
+  - name: Parent
+    to: Event.EventData.ParentImage
+
+filter:
+  condition: event_log and cmd
+
+  event_log:
+    - Event.System.EventID: 1
+    - Event.System.Channel: Microsoft-Windows-Sysmon/Operational
+
+  cmd:
+    - Event.EventData.CommandLine:
+        - '*\ADMIN$*'
+    - Event.EventData.CommandLine:
+        - "*127.0.0.1*"
+    - Event.EventData.CommandLine:
+        - "*2>&1*"
