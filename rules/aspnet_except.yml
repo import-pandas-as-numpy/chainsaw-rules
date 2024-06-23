@@ -1,7 +1,7 @@
 ---
 title: ASP Exceptions
 group: Webservers
-description: ASP internal auditing errors and exceptions, often raised during the exploitation of IIS.
+description: ASP internal auditing errors and exceptions.
 authors:
   - sudoREM
 
@@ -25,5 +25,11 @@ fields:
     to: Event.EventData.Data[21]
 
 filter:
-  Event.System.EventID: 1309
-  Event.System.Provider_attributes.Name: "i*ASP.NET*"
+  condition: event_information and not uninteresting
+  event_information:
+    Event.System.EventID: 1309
+    Event.System.Provider_attributes.Name: "i*ASP.NET*"
+
+  uninteresting:
+    Event.EventData.Data[17]:
+      - "NullReferenceException"
