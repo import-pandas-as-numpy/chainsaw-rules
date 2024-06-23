@@ -33,3 +33,4 @@ filter:
   uninteresting:
     Event.EventData.Data[17]:
       - "NullReferenceException"
+      - "ArgumentNullException"
