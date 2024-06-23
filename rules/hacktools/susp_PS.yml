@@ -1,6 +1,6 @@
 ---
 title: Supicious Powershell
-group: Powershell
+group: Hacktools
 description: JAB is observed often in canned reverse shells and Beacons. Adopted from Florian Roth's YARA rule.
 authors:
   - sudoREM
