@@ -19,16 +19,17 @@ fields:
     to: Event.EventData.ParentImage
 
 filter:
-  condition: event_log and cmd
+  condition: event_log and local_share and hidden_share and command_redirection
 
   event_log:
-    - Event.System.EventID: 1
-    - Event.System.Channel: Microsoft-Windows-Sysmon/Operational
+    Event.System.EventID: 1
+    Event.System.Channel: Microsoft-Windows-Sysmon/Operational
 
-  cmd:
-    - Event.EventData.CommandLine:
-        - '*\ADMIN$*'
-    - Event.EventData.CommandLine:
-        - "*127.0.0.1*"
-    - Event.EventData.CommandLine:
-        - "*2>&1*"
+  local_share:
+    Event.EventData.CommandLine: '*\\127.0.0.1*'
+
+  hidden_share:
+    Event.EventData.CommandLine: "*ADMIN$*"
+
+  command_redirection:
+    Event.EventData.CommandLine: "* 2>&1"
