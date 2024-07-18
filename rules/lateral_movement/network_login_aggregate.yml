@@ -39,7 +39,7 @@ filter:
     - Event.EventData.TargetUserName: $*'
 
 aggregate:
-  count: '>1'
+  count: '>0'
   fields:
     - Event.EventData.IpAddress
     - Event.EventData.TargetUserName
