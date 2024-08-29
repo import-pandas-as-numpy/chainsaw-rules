@@ -23,7 +23,7 @@ fields:
     to: Event.System.Computer
 
 filter:
-  condition: event_log and comspec
+  condition: event_log and comspec and lsass
 
   event_log:
     Event.System.EventID: 7045
