@@ -13,7 +13,7 @@ timestamp: Event.System.TimeCreated
 fields:
   - name: Event ID
     to: Event.System.EventID
-  - name: Command
+  - name: Payload
     to: Event.EventData.CommandLine
   - name: Parent
     to: Event.EventData.ParentImage
