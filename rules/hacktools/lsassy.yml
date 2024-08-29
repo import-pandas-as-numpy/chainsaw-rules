@@ -15,21 +15,23 @@ fields:
     to: Event.System.EventID
   - name: Service
     to: Event.EventData.ServiceName
-  - name: User
+  - name: User SID
     to: Event.System.Security_attributes.UserID
-  - name: Image Path
+  - name: Payload
     to: Event.EventData.ImagePath
+  - name: Computer
+    to: Event.System.Computer
 
 filter:
-  condition: event_log and comspec and lsass
+  condition: event_log and comspec
 
   event_log:
     Event.System.EventID: 7045
-    Event.System.Channel: 'System'
-    Event.System.Provider_attributes.EventSourceName: 'Service Control Manager'
+    Event.System.Channel: "System"
+    Event.System.Provider_attributes.EventSourceName: "Service Control Manager"
 
   comspec:
-    Event.EventData.ImagePath: i"*%COMSPEC%*"
-  
+    Event.EventData.ImagePath: "i*%COMSPEC%*"
+
   lsass:
-    Event.EventData.ImagePath: i"*lsass.exe*"
+    Event.EventData.ImagePath: "i*lsass.exe*"
