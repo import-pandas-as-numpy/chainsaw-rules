@@ -1,0 +1,30 @@
+---
+title: Scheduled Task Registration
+group: Scheduled Task
+description: Detects registration of scheduled tasks.
+authors:
+  - sudoREM
+
+kind: evtx
+level: medium
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name: Computer
+    to: Event.System.Computer
+  - name : Username
+    to: Event.EventData.UserContext
+  - name: Task Name
+    to: Event.EventData.TaskName
+
+filter:
+  condition: event_information and not system_accounts
+  event_information:
+    Event.System.Provider_attributes.Name: Microsoft-Windows-TaskScheduler
+    Event.System.EventID: 106
+  
+  system_accounts:
+    Event.EventData.UserContext: "i*$"

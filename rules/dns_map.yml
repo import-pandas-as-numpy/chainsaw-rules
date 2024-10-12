@@ -1,0 +1,33 @@
+---
+title: Machine Assigned IP
+group: DNS
+description: Detects DNS 519 activity for local network mapping. 
+authors:
+  - sudoREM
+
+kind: evtx
+level: medium
+status: stable
+timestamp: Event.System.TimeCreated
+
+fields:
+  - name: Event ID
+    to: Event.System.EventID
+  - name : IP Address
+    to: Event.EventData.Source
+  - name: Hostname
+    to: Event.EventData.NAME
+
+filter:
+  condition: global
+
+  global:
+    Event.System.EventID: 519
+    Event.System.Channel: Microsoft-Windows-DNSServer/Audit
+    Event.EventData.Type: 1
+
+aggregate:
+  count: '>0'
+  fields:
+    - Event.EventData.Source
+    - Event.EventData.NAME
