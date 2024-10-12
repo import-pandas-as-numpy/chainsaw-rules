@@ -23,4 +23,16 @@ fields:
     to: Event.EventData.TaskContent
 
 filter:
-  Event.System.EventID: 4698
+  condition: global and not uninteresting
+
+  global:
+    Event.System.EventID: 4698
+  
+  uninteresting:
+    Event.EventData.TaskName:
+      - \Backup Bitlocker Key to AD
+      - \Microsoft\Windows\Windows Defender\Windows Defender Scheduled Scan
+      - \Microsoft\Windows\Windows Defender\Windows Defender Verification
+      - \Microsoft\Windows\Windows Defender\Windows Defender Cache Maintenance
+      - \Microsoft\Windows\Windows Defender\Windows Defender Cleanup
+      - \Microsoft\Windows\PI\SecureBootEncodeUEFI
